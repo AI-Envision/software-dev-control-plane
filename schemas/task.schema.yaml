@@ -1,0 +1,30 @@
+required:
+  - id
+  - title
+  - project
+  - type
+  - status
+  - strategic_goal
+  - current_factual_state
+  - capability_unlocked
+  - non_goals
+  - allowed_files
+  - required_outputs
+  - stop_conditions
+  - reality_check
+properties:
+  type:
+    enum: [capability, blocking_hotfix, security_fix, investigation]
+  status:
+    enum:
+      - draft
+      - architecture_reviewed
+      - ready
+      - prompt_generated
+      - dry_run_prepared
+      - implementation_in_progress
+      - validation_pending
+      - reality_check_pending
+      - completed
+      - blocked
+      - superseded

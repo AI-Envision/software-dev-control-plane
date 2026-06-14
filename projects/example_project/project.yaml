@@ -1,0 +1,19 @@
+project_id: example_project
+target_repo: /tmp/example-target-repo
+default_branch: main
+languages:
+  - cpp
+  - python
+test_commands:
+  - cmake -S cpp -B build
+  - cmake --build build
+  - ctest --test-dir build --output-on-failure
+  - python3 -m pytest -q
+boundaries:
+  protected_paths:
+    - /home/lev/ai-dev-platform
+    - /home/lev/arb-rebuild-workspace
+    - /home/lev/crypto-arb-bot
+  allow_network: false
+  allow_secrets: false
+  public_disclosure: synthetic_or_explicitly_approved_only

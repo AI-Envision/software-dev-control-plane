@@ -1,0 +1,18 @@
+required:
+  - project_id
+  - target_repo
+  - default_branch
+  - languages
+  - test_commands
+  - boundaries
+properties:
+  project_id: string
+  target_repo: path
+  default_branch: string
+  languages: list[string]
+  test_commands: list[string]
+  boundaries:
+    protected_paths: list[path]
+    allow_network: bool
+    allow_secrets: bool
+    public_disclosure: string

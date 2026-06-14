@@ -1,0 +1,51 @@
+id: EX-001
+title: deterministic_end_to_end_capability
+project: example_project
+type: capability
+status: ready
+
+strategic_goal:
+  Build one small, locally runnable, deterministic capability.
+
+current_factual_state:
+  - The project profile exists.
+  - No product implementation is claimed.
+
+capability_unlocked:
+  - A reviewer can execute one end-to-end path.
+  - The output is machine-readable.
+  - Failure cases are explicit.
+
+non_goals:
+  - No production-readiness claim.
+  - No external AI API dependency.
+  - No secrets.
+  - No changes to protected repositories.
+
+target_branch: agent/EX-001-deterministic-end-to-end
+
+allowed_files:
+  - src/**
+  - tests/**
+  - testdata/**
+  - README.md
+
+required_outputs:
+  - successful build
+  - deterministic unit tests
+  - one negative test
+  - machine-readable result artifact
+  - human-readable handoff
+
+stop_conditions:
+  - Work requires a protected repository.
+  - Work requires credentials.
+  - Scope expands beyond one coherent capability.
+  - Two focused correction attempts fail.
+  - Tests cannot support the completion claim.
+
+reality_check:
+  - Is the capability runnable end to end?
+  - Are claims backed by tests?
+  - Does failure remain visible?
+  - Can a reviewer reproduce the result without external services?

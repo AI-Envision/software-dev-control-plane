@@ -1,0 +1,10 @@
+milestones:
+  - id: EX-001
+    title: Establish one deterministic end-to-end capability
+    status: ready
+  - id: EX-002
+    title: Add negative cases and replay evidence
+    status: planned
+  - id: EX-003
+    title: Run final reality check and reviewer handoff
+    status: planned
