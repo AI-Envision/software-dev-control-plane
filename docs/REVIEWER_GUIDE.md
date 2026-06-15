@@ -1,7 +1,9 @@
 # Reviewer Guide
 
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 This repository demonstrates the engineering process used around an
-AI-assisted take-home project.
+AI-assisted software project.
 
 ## Suggested review path
 

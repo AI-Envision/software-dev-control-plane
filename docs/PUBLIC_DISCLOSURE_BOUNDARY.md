@@ -1,5 +1,7 @@
 # Public Disclosure Boundary
 
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 Allowed in this public repository:
 
 - generic orchestration code
@@ -17,7 +19,7 @@ Forbidden:
 - trading strategies or exchange account information
 - customer data
 - real incident data
-- take-home instructions marked confidential
+- confidential project instructions
 
 A project-specific repository may be private even when this framework is
 public. In that case, grant reviewer access to the project repository and link

@@ -1,5 +1,7 @@
 # Architecture
 
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 ## Core model
 
 The control plane has five persistent objects:

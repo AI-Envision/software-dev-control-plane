@@ -1,5 +1,7 @@
 # Governance
 
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 ## Hard-truth boundary
 
 Every task must state:
