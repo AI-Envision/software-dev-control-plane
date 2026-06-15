@@ -1,5 +1,9 @@
 # Reviewer Guide
 
+Developed by Lev Kantorovich.
+
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 This repository demonstrates the engineering process used around an
 AI-assisted take-home project.
 

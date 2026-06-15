@@ -1,5 +1,9 @@
 # Skills
 
+Developed by Lev Kantorovich.
+
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 This directory contains compact procedural skills for the Universal Software Development Control Plane.
 
 Each skill lives in:
@@ -24,6 +28,7 @@ The description is a routing trigger. The body contains procedure, checks, gotch
 - context-management
 - kiss-engineering
 - algorithmic-efficiency
+- code-quality-comments
 
 ## Validation
 

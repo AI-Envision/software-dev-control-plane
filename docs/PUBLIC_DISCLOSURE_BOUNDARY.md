@@ -1,5 +1,9 @@
 # Public Disclosure Boundary
 
+Developed by Lev Kantorovich.
+
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
 Allowed in this public repository:
 
 - generic orchestration code

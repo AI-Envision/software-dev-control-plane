@@ -1,4 +1,34 @@
-# Software Development Control Plane
+# Universal Software Development Control Plane
+
+Developed by Lev Kantorovich.
+
+LinkedIn: https://www.linkedin.com/in/levkantorovich
+
+A clean-room control plane for AI-assisted software development.
+
+This repository demonstrates how agentic coding workflows can be made more reliable, reviewable, and production-oriented through structured tasks, procedural skills, quality gates, governance rules, explicit human handoff, and human review boundaries.
+
+## Portfolio purpose
+
+This repository is intended as a portfolio artifact for roles involving AI-assisted engineering, agentic development workflows, AI infrastructure, software engineering productivity, platform engineering, systems engineering, security-minded automation, and code quality.
+
+The goal is not maximum agent autonomy. The goal is AI-assisted engineering that is safer, smaller, more deterministic, easier to review, easier to test, and easier for another engineer to continue.
+
+## Current skills
+
+- repository-safety
+- task-execution
+- quality-gates
+- agent-handoff
+- context-management
+- kiss-engineering
+- algorithmic-efficiency
+- code-quality-comments
+
+---
+
+## Original project documentation
+
 
 A clean-room, reusable control plane for AI-assisted software development.
 
