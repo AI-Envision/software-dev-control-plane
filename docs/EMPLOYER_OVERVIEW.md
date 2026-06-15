@@ -1,14 +1,12 @@
 # Employer Overview
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 ## What this project is
 
 This repository is a clean-room demonstration of a software development control plane for AI-assisted engineering.
 
-It was designed and developed by Lev Kantorovich as a public-facing portfolio artifact. It is not tied to proprietary employer code.
+It is a public-facing portfolio artifact and is not tied to proprietary employer code.
 
 ## Problem it addresses
 
@@ -20,4 +18,4 @@ This project shows an approach based on structured task definitions, procedural 
 
 ## Engineering style
 
-This project reflects Lev Kantorovich's engineering style: explicit, testable, observable, bounded, reviewable, security-conscious, performance-aware, and practical rather than hype-driven.
+This project reflects an engineering style that is explicit, testable, observable, bounded, reviewable, security-conscious, performance-aware, and practical rather than hype-driven.

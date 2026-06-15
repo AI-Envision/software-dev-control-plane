@@ -1,7 +1,5 @@
 # Quality Workflow
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 Agent-produced code should be small enough to review, directly related to the task, tested where practical, understandable by the next engineer, consistent with existing project conventions, and explicit about limitations.

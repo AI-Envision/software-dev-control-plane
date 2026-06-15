@@ -1,7 +1,5 @@
 # How To Use This Control Plane
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 Run from the repository root:

@@ -1,7 +1,5 @@
 # Skills
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 This directory contains compact procedural skills for the Universal Software Development Control Plane.

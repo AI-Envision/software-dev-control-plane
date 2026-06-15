@@ -1,7 +1,5 @@
 # Universal Software Development Control Plane
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 A clean-room control plane for AI-assisted software development.
@@ -74,7 +72,7 @@ inspect:
 6. `projects/example_project/`
 7. `tests/`
 
-The control plane can be linked from a take-home repository through a
+The control plane can be linked from a target repository through a
 `CONTROL_PLANE.md` file.
 
 ## Quick start

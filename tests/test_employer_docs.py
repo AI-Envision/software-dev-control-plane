@@ -18,12 +18,11 @@ def test_employer_facing_docs_exist() -> None:
         assert (repo_root / relative).is_file(), relative
 
 
-def test_employer_facing_docs_name_author_and_linkedin() -> None:
+def test_employer_facing_docs_include_linkedin() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     docs = [repo_root / "README.md"] + sorted((repo_root / "docs").glob("*.md"))
     for path in docs:
         text = path.read_text(encoding="utf-8")
-        assert "Lev Kantorovich" in text, str(path)
         assert "linkedin.com/in/levkantorovich" in text, str(path)
 
 

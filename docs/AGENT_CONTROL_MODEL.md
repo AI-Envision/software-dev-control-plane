@@ -1,7 +1,5 @@
 # Agent Control Model
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 This project uses a layered control model for AI-assisted development.

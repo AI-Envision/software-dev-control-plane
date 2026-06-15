@@ -5,8 +5,6 @@ description: Load when an agent writes or reviews source code, tests, scripts, o
 
 # Code Quality and Comments Skill
 
-Developed by Lev Kantorovich as part of the Universal Software Development Control Plane.
-
 Core rule: code should be understandable by the next engineer without requiring the original agent conversation.
 
 Required checks:

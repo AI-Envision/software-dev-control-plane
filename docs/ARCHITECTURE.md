@@ -1,7 +1,5 @@
 # Architecture
 
-Developed by Lev Kantorovich.
-
 LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 ## Core model
