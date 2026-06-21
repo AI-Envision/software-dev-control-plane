@@ -5,11 +5,18 @@ import json
 from pathlib import Path
 
 from .manifest import write_manifest
+from .rendering import (
+    load_project_task,
+    load_project_task_evidence,
+    render_prompt_markdown,
+    render_review_packet_markdown,
+)
 from .validation import (
     ValidationError,
     load_yaml,
     validate_project,
     validate_task,
+    validate_task_project_match,
 )
 
 
@@ -30,6 +37,17 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--project", required=True, type=Path)
     prepare.add_argument("--task", required=True, type=Path)
     prepare.add_argument("--runs-root", type=Path, default=Path("shared/runs"))
+
+    render_prompt = sub.add_parser("render-prompt")
+    render_prompt.add_argument("--project", required=True, type=Path)
+    render_prompt.add_argument("--task", required=True, type=Path)
+    render_prompt.add_argument("--output", required=True, type=Path)
+
+    render_review = sub.add_parser("render-review-packet")
+    render_review.add_argument("--project", required=True, type=Path)
+    render_review.add_argument("--task", required=True, type=Path)
+    render_review.add_argument("--evidence", required=True, type=Path)
+    render_review.add_argument("--output", required=True, type=Path)
 
     return parser
 
@@ -54,11 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             task = load_yaml(args.task)
             validate_project(project)
             validate_task(task)
-            if task["project"] != project["project_id"]:
-                raise ValidationError(
-                    f"Task project {task['project']} does not match "
-                    f"project profile {project['project_id']}"
-                )
+            validate_task_project_match(project, task)
             path = write_manifest(
                 args.runs_root,
                 project=project,
@@ -67,6 +81,31 @@ def main(argv: list[str] | None = None) -> int:
                 task_path=args.task,
             )
             print(json.dumps({"dry_run": True, "manifest": str(path)}, indent=2))
+            return 0
+
+        if args.command == "render-prompt":
+            project, task = load_project_task(args.project, args.task)
+            content = render_prompt_markdown(project, task)
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(content, encoding="utf-8")
+            print(json.dumps({"rendered": "prompt", "output": str(args.output)}, indent=2))
+            return 0
+
+        if args.command == "render-review-packet":
+            project, task, evidence = load_project_task_evidence(
+                args.project,
+                args.task,
+                args.evidence,
+            )
+            content = render_review_packet_markdown(project, task, evidence)
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(content, encoding="utf-8")
+            print(
+                json.dumps(
+                    {"rendered": "review_packet", "output": str(args.output)},
+                    indent=2,
+                )
+            )
             return 0
 
     except ValidationError as exc:

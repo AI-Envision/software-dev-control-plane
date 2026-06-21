@@ -46,6 +46,17 @@ TASK_STATES = {
     "superseded",
 }
 
+EVIDENCE_REQUIRED = {
+    "target_repo",
+    "commits",
+    "validation",
+    "implemented_files",
+    "claims_supported",
+    "non_claims",
+    "boundary_review",
+    "final_status",
+}
+
 
 class ValidationError(ValueError):
     pass
@@ -96,3 +107,41 @@ def validate_task(data: dict[str, Any]) -> None:
         raise ValidationError("Task allowed_files must be a non-empty list")
     if not isinstance(data["stop_conditions"], list) or not data["stop_conditions"]:
         raise ValidationError("Task stop_conditions must be a non-empty list")
+
+
+def validate_task_project_match(
+    project: dict[str, Any],
+    task: dict[str, Any],
+) -> None:
+    if task["project"] != project["project_id"]:
+        raise ValidationError(
+            f"Task project {task['project']} does not match "
+            f"project profile {project['project_id']}"
+        )
+
+
+def validate_evidence(data: dict[str, Any]) -> None:
+    _require(data, EVIDENCE_REQUIRED, "Evidence")
+
+    list_fields = (
+        "commits",
+        "validation",
+        "implemented_files",
+        "claims_supported",
+        "non_claims",
+        "boundary_review",
+    )
+    for field in list_fields:
+        if not isinstance(data[field], list):
+            raise ValidationError(f"Evidence {field} must be a list")
+
+    if "algorithm" in data and data["algorithm"] is not None and not isinstance(
+        data["algorithm"], str
+    ):
+        raise ValidationError("Evidence algorithm must be a string when provided")
+    if "complexity" in data and data["complexity"] is not None and not isinstance(
+        data["complexity"], str
+    ):
+        raise ValidationError("Evidence complexity must be a string when provided")
+    if not isinstance(data["final_status"], str) or not data["final_status"].strip():
+        raise ValidationError("Evidence final_status must be a non-empty string")

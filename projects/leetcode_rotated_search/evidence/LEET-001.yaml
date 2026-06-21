@@ -1,0 +1,39 @@
+target_repo: /home/a/ucp-demo-workspace/leetcode-rotated-search
+commits:
+  - c2c0b19 Initialize rotated search demo scaffold
+  - e25dcee Implement rotated sorted array search demo
+  - 6238da1 Ignore Python generated artifacts
+validation:
+  - python -m pip install -e '.[dev]' -> passed
+  - pytest -q -> 10 passed
+implemented_files:
+  - .gitignore
+  - README.md
+  - CONTROL_PLANE.md
+  - pyproject.toml
+  - src/rotated_search/__init__.py
+  - src/rotated_search/search.py
+  - tests/test_search.py
+algorithm: Binary-search style rotated sorted array search for unique integers.
+complexity: O(log n) time, O(1) extra space.
+claims_supported:
+  - Finds target in a rotated sorted array with unique integers.
+  - Returns -1 when target is absent.
+  - Returns -1 for an empty array.
+  - Handles single-element hit and miss cases.
+  - Works for non-rotated sorted arrays.
+  - Handles rotation-boundary cases.
+  - Finds pivot element in a rotated array.
+non_claims:
+  - No support claimed for duplicate values.
+  - No production-library claim.
+  - No benchmark claim beyond algorithmic complexity.
+  - No external service integration claim.
+boundary_review:
+  - No network/API usage.
+  - No secrets.
+  - No trading/arb repo dependency.
+  - No ai-dev-platform dependency.
+  - No unnecessary framework, service, or database.
+  - No auto-push or auto-merge.
+final_status: First control-plane-driven demo cycle completed successfully and is ready for human review.
