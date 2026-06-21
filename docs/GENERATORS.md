@@ -15,7 +15,7 @@ sdcp render-prompt \
   --output shared/generated_prompts/LEET-001-prompt.md
 ```
 
-The prompt includes the task identity, target repository and branch, strict boundaries, allowed files, current state, required outputs, stop conditions, reality checks, validation commands, and final handoff requirements.
+The prompt includes the task identity, target repository and branch, strict boundaries, allowed files, a concise Engineering Quality Requirements section, current state, required outputs, stop conditions, reality checks, validation commands, and final handoff requirements.
 
 ## Review packet
 
@@ -29,7 +29,7 @@ sdcp render-review-packet \
   --output shared/generated_prompts/LEET-001-review.md
 ```
 
-The review packet is deterministic Markdown built from the task metadata plus evidence about commits, validation, implemented files, supported claims, non-claims, boundary review, and final status.
+The review packet is deterministic Markdown built from the task metadata plus evidence about commits, validation, implemented files, algorithm/complexity, quality review notes when present, supported claims, non-claims, boundary review, and final status.
 
 ## LEET-001 relationship
 

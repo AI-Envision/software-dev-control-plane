@@ -5,6 +5,8 @@ import pytest
 from control_plane.validation import (
     ValidationError,
     load_yaml,
+    validate_evidence,
+    validate_engineering_quality_requirements,
     validate_project,
     validate_task,
 )
@@ -35,3 +37,22 @@ def test_capability_requires_capability_output():
     data["capability_unlocked"] = []
     with pytest.raises(ValidationError, match="capability_unlocked"):
         validate_task(data)
+
+
+def test_engineering_quality_requirements_template_is_valid():
+    data = load_yaml(ROOT / "templates/requirements/engineering_quality.yaml")
+    validate_engineering_quality_requirements(data)
+
+
+def test_evidence_quality_review_fields_accept_string_or_string_list():
+    data = load_yaml(ROOT / "projects/leetcode_rotated_search/evidence/LEET-001.yaml")
+    data["quality_review"] = "Minimal implementation."
+    data["complexity_review"] = ["O(log n) time.", "O(1) extra space."]
+    validate_evidence(data)
+
+
+def test_evidence_quality_review_fields_reject_non_string_values():
+    data = load_yaml(ROOT / "projects/leetcode_rotated_search/evidence/LEET-001.yaml")
+    data["test_review"] = {"status": "invalid"}
+    with pytest.raises(ValidationError, match="test_review must be a string or list of strings"):
+        validate_evidence(data)

@@ -1,0 +1,33 @@
+principles:
+  - Prefer the simplest design that satisfies the stated requirements.
+  - Avoid overengineering unless the task explicitly justifies more structure.
+  - Keep core quality expectations language-neutral across Python, C++, Go, Rust, and future templates.
+required_prompt_sections:
+  - "KISS: choose the minimal design that satisfies the task; avoid unnecessary abstractions, frameworks, services, plugins, daemons, and dependency managers unless explicitly justified."
+  - "Complexity: every non-trivial implementation must state expected time and space complexity."
+  - "Performance: avoid unnecessary allocations, copies, repeated parsing, repeated filesystem scans, quadratic behavior, busy waits, and avoidable synchronization costs."
+  - "Maintainability: use clear names, small cohesive functions/modules, explicit boundaries, minimal global state, and code that keeps core logic testable."
+  - "Deterministic validation: tests must be reproducible and must not depend on network, credentials, timing luck, or external services unless explicitly required."
+  - "Security and disclosure: no secrets, no credential logging, no hidden network calls, no unsafe shelling out unless justified, and no proprietary or protected repository leakage."
+  - "Evidence-based claims: include explicit claims and non-claims; do not claim correctness, performance, compatibility, or production readiness beyond the available evidence."
+design_review_questions:
+  - Is the problem statement precise enough to prevent accidental scope growth?
+  - Is the proposed architecture the simplest design that can satisfy the requirement?
+  - Are chosen data structures and boundaries intentional and reviewable?
+  - Are failure modes, validation strategy, and security/disclosure constraints explicit?
+code_review_questions:
+  - Does the code remain cohesive, readable, and free of unnecessary indirection?
+  - Are complexity, allocation behavior, and hidden I/O costs acceptable for the task?
+  - Are tests deterministic and able to exercise core logic without environment-specific side effects?
+  - Do the implementation notes and evidence avoid unsupported claims?
+required_claims:
+  - State what behavior, complexity, and validation evidence are actually supported.
+required_non_claims:
+  - State what was not validated or is intentionally out of scope.
+prohibited_patterns:
+  - Adding frameworks, generic plugin systems, background services, or dependency managers without explicit task justification.
+  - Hidden network access, credential use, or protected-repository dependencies.
+  - Claiming performance, correctness, compatibility, or production readiness without evidence.
+validation_expectations:
+  - Validation commands must be deterministic and runnable without network access unless the task explicitly requires otherwise.
+  - Review artifacts should capture claims, non-claims, and quality evidence in a form a human can audit.
