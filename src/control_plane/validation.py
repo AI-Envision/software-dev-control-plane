@@ -57,6 +57,24 @@ EVIDENCE_REQUIRED = {
     "final_status",
 }
 
+ENGINEERING_QUALITY_REQUIRED = {
+    "principles",
+    "required_prompt_sections",
+    "design_review_questions",
+    "code_review_questions",
+    "required_claims",
+    "required_non_claims",
+    "prohibited_patterns",
+    "validation_expectations",
+}
+
+QUALITY_REVIEW_FIELDS = (
+    "quality_review",
+    "complexity_review",
+    "design_review",
+    "test_review",
+)
+
 
 class ValidationError(ValueError):
     pass
@@ -143,5 +161,38 @@ def validate_evidence(data: dict[str, Any]) -> None:
         data["complexity"], str
     ):
         raise ValidationError("Evidence complexity must be a string when provided")
+    for field in QUALITY_REVIEW_FIELDS:
+        if field not in data or data[field] is None:
+            continue
+        if isinstance(data[field], str):
+            continue
+        if isinstance(data[field], list) and all(isinstance(item, str) for item in data[field]):
+            continue
+        raise ValidationError(
+            f"Evidence {field} must be a string or list of strings when provided"
+        )
     if not isinstance(data["final_status"], str) or not data["final_status"].strip():
         raise ValidationError("Evidence final_status must be a non-empty string")
+
+
+def validate_engineering_quality_requirements(data: dict[str, Any]) -> None:
+    _require(data, ENGINEERING_QUALITY_REQUIRED, "Engineering quality requirements")
+
+    list_fields = (
+        "principles",
+        "required_prompt_sections",
+        "design_review_questions",
+        "code_review_questions",
+        "required_claims",
+        "required_non_claims",
+        "prohibited_patterns",
+        "validation_expectations",
+    )
+    for field in list_fields:
+        value = data[field]
+        if not isinstance(value, list) or not value or not all(
+            isinstance(item, str) and item.strip() for item in value
+        ):
+            raise ValidationError(
+                f"Engineering quality requirements {field} must be a non-empty list of strings"
+            )

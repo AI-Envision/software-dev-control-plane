@@ -6,10 +6,18 @@ from typing import Any
 from .validation import (
     ValidationError,
     load_yaml,
+    validate_engineering_quality_requirements,
     validate_evidence,
     validate_project,
     validate_task,
     validate_task_project_match,
+)
+
+ENGINEERING_QUALITY_PATH = (
+    Path(__file__).resolve().parents[2]
+    / "templates"
+    / "requirements"
+    / "engineering_quality.yaml"
 )
 
 
@@ -25,6 +33,21 @@ def _optional_line(label: str, value: Any) -> list[str]:
     if value in (None, ""):
         return []
     return [f"- {label}: {value}"]
+
+
+def _string_list(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [item for item in value if isinstance(item, str)]
+    return []
+
+
+def load_engineering_quality_requirements(path: Path | None = None) -> dict[str, Any]:
+    quality_path = path or ENGINEERING_QUALITY_PATH
+    data = load_yaml(quality_path)
+    validate_engineering_quality_requirements(data)
+    return data
 
 
 def load_project_task(project_path: Path, task_path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -53,6 +76,7 @@ def load_project_task_evidence(
 
 def render_prompt_markdown(project: dict[str, Any], task: dict[str, Any]) -> str:
     boundaries = project["boundaries"]
+    quality = load_engineering_quality_requirements()
     sections = [
         _section(
             "Task",
@@ -78,6 +102,10 @@ def render_prompt_markdown(project: dict[str, Any], task: dict[str, Any]) -> str
             ],
         ),
         _section("Allowed Files", _bullet_list(task["allowed_files"])),
+        _section(
+            "Engineering Quality Requirements",
+            _bullet_list(quality["required_prompt_sections"]),
+        ),
         _section("Strategic Goal", [str(task["strategic_goal"])]),
         _section("Current Factual State", _bullet_list(task["current_factual_state"])),
         _section("Required Outputs", _bullet_list(task["required_outputs"])),
@@ -118,12 +146,24 @@ def render_review_packet_markdown(
     if evidence.get("complexity"):
         algo_lines.append(f"- Complexity: {evidence['complexity']}")
 
+    quality_lines: list[str] = []
+    review_labels = {
+        "quality_review": "Quality review",
+        "complexity_review": "Complexity review",
+        "design_review": "Design review",
+        "test_review": "Test review",
+    }
+    for field, label in review_labels.items():
+        for item in _string_list(evidence.get(field)):
+            quality_lines.append(f"- {label}: {item}")
+
     sections = [
         _section("Task", summary_lines),
         _section("Commits", _bullet_list(evidence["commits"])),
         _section("Validation Results", _bullet_list(evidence["validation"])),
         _section("Implemented Files", _bullet_list(evidence["implemented_files"])),
         _section("Algorithm / Complexity", algo_lines or ["- Not provided."]),
+        _section("Quality Review", quality_lines or ["- Not provided."]),
         _section("Claims Supported", _bullet_list(evidence["claims_supported"])),
         _section("Non-Claims", _bullet_list(evidence["non_claims"])),
         _section("Boundary Review", _bullet_list(evidence["boundary_review"])),
