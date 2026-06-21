@@ -1,0 +1,31 @@
+id: cpp_cli
+language: cpp
+description: Minimal bounded C++ CLI scaffold with deterministic CMake and CTest metadata.
+default_validation:
+  - cmake -S . -B build
+  - cmake --build build
+  - ctest --test-dir build --output-on-failure
+default_allowed_files:
+  - .gitignore
+  - README.md
+  - CONTROL_PLANE.md
+  - CMakeLists.txt
+  - src/**
+  - include/**
+  - tests/**
+generated_ignore:
+  - build/
+  - CMakeFiles/
+  - CMakeCache.txt
+  - compile_commands.json
+  - '*.o'
+  - '*.obj'
+  - '*.exe'
+  - '*.out'
+files:
+  - .gitignore
+  - README.md
+  - CONTROL_PLANE.md
+  - CMakeLists.txt
+  - src/main.cpp
+  - tests/test_smoke.cpp

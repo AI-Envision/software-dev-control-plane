@@ -1,0 +1,27 @@
+id: python_package
+language: python
+description: Minimal bounded Python package scaffold with deterministic pytest validation.
+default_validation:
+  - python -m pip install -e '.[dev]'
+  - pytest -q
+default_allowed_files:
+  - .gitignore
+  - README.md
+  - CONTROL_PLANE.md
+  - pyproject.toml
+  - src/**
+  - tests/**
+generated_ignore:
+  - __pycache__/
+  - '*.py[cod]'
+  - .pytest_cache/
+  - .venv/
+  - '*.egg-info/'
+files:
+  - .gitignore
+  - README.md
+  - CONTROL_PLANE.md
+  - pyproject.toml
+  - src/{{package_name}}/__init__.py
+  - src/{{package_name}}/main.py
+  - tests/test_smoke.py
