@@ -4,6 +4,8 @@ LinkedIn: https://www.linkedin.com/in/levkantorovich
 
 The control-plane CLI can now render two deterministic Markdown artifacts from project/task metadata and review evidence.
 
+For language-aware target repository scaffolding, see [TARGET_TEMPLATES.md](TARGET_TEMPLATES.md).
+
 ## Implementation prompt
 
 Generate an implementation prompt with:
