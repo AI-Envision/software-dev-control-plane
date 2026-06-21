@@ -25,7 +25,7 @@ def test_example_task_is_valid():
 
 def test_protected_target_is_rejected():
     data = load_yaml(ROOT / "projects/example_project/project.yaml")
-    data["target_repo"] = "/home/lev/ai-dev-platform"
+    data["target_repo"] = "/home/a/ai-dev-platform"
     with pytest.raises(ValidationError, match="protected path"):
         validate_project(data)
 

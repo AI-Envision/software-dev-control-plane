@@ -1,0 +1,53 @@
+id: LEET-001
+title: rotated_sorted_array_search_demo
+project: leetcode_rotated_search
+type: capability
+status: ready
+
+strategic_goal:
+  Build a small deterministic LeetCode-style demo project that proves the control plane can manage a bounded target repository without secrets, network access, or proprietary code.
+
+current_factual_state:
+  - Target repository exists as a clean synthetic demo repository.
+  - No implementation is claimed before the task is executed.
+
+capability_unlocked:
+  - A reviewer can run deterministic tests for rotated sorted array search.
+  - The implementation has documented examples and negative cases.
+  - The target repo remains independent from the control-plane repo.
+
+non_goals:
+  - No external API calls.
+  - No credentials.
+  - No production-readiness claim.
+  - No changes to protected repositories.
+  - No auto-push or auto-merge.
+
+target_branch: agent/LEET-001-rotated-search
+
+allowed_files:
+  - README.md
+  - CONTROL_PLANE.md
+  - src/**
+  - tests/**
+  - pyproject.toml
+
+required_outputs:
+  - Python implementation of rotated sorted array search.
+  - Unit tests for found, not-found, single-element, empty-array, and non-rotated cases.
+  - README usage example.
+  - Deterministic pytest run.
+  - Short human-readable handoff with limitations.
+
+stop_conditions:
+  - Work requires credentials or network access.
+  - Work touches repositories outside the declared target repo.
+  - Scope expands beyond the rotated-array demo capability.
+  - Two focused correction attempts fail.
+  - Tests cannot support the completion claim.
+
+reality_check:
+  - Does the algorithm return correct indices for the required examples?
+  - Are edge cases covered by tests?
+  - Is the claimed O(log n) behavior reflected in the implementation structure?
+  - Can a reviewer reproduce the result locally without external services?

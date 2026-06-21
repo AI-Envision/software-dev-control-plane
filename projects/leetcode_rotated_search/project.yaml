@@ -1,19 +1,16 @@
-project_id: example_project
-target_repo: /tmp/example-target-repo
+project_id: leetcode_rotated_search
+target_repo: /home/a/ucp-demo-workspace/leetcode-rotated-search
 default_branch: main
 languages:
-  - cpp
   - python
 test_commands:
-  - cmake -S cpp -B build
-  - cmake --build build
-  - ctest --test-dir build --output-on-failure
   - python3 -m pytest -q
 boundaries:
   protected_paths:
     - /home/a/ai-dev-platform
     - /home/a/arb-rebuild-workspace
     - /home/a/crypto-arb-bot
+    - /home/a/software-dev-control-plane
   allow_network: false
   allow_secrets: false
   public_disclosure: synthetic_or_explicitly_approved_only
