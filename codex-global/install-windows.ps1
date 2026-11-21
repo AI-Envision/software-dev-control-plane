@@ -25,10 +25,15 @@ $hasBegin = $current.Contains($begin)
 $hasEnd = $current.Contains($end)
 if ($hasBegin -ne $hasEnd) { throw "Malformed AOS markers in $targetAgents. Edit manually before installation." }
 if ($hasBegin) {
-    $pattern = [regex]::Escape($begin) + '[\s\S]*?' + [regex]::Escape($end)
-    $matches = [regex]::Matches($current, $pattern)
-    if ($matches.Count -ne 1) { throw 'Expected exactly one managed AOS block.' }
-    $next = [regex]::Replace($current, $pattern, [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $block })
+    if ($current.IndexOf($begin) -ne $current.LastIndexOf($begin) -or
+        $current.IndexOf($end) -ne $current.LastIndexOf($end)) {
+        throw 'Expected exactly one managed AOS block.'
+    }
+    $startIndex = $current.IndexOf($begin)
+    $endIndex = $current.IndexOf($end, $startIndex)
+    if ($endIndex -lt $startIndex) { throw 'Malformed managed section order.' }
+    $next = $current.Substring(0, $startIndex) + $block +
+        $current.Substring($endIndex + $end.Length)
 } elseif ([string]::IsNullOrWhiteSpace($current)) {
     $next = $block + "`n"
 } else {
