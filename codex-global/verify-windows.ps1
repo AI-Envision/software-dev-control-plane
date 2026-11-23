@@ -10,7 +10,7 @@ if (Test-Path $global) {
     $data = [System.IO.File]::ReadAllText($global)
     Write-Host ("Managed AOS section present: " + ($data.Contains('<!-- AOS-CODEX-GLOBAL START -->') -and $data.Contains('<!-- AOS-CODEX-GLOBAL END -->')))
 } else { Write-Warning 'Missing global AGENTS.md' }
-foreach ($name in @('outcome-delivery','browser-qa','evidence-learning')) {
+foreach ($name in @('outcome-delivery','browser-qa','evidence-learning','venture-validation')) {
     $file = Join-Path (Join-Path $skills $name) 'SKILL.md'
     Write-Host ("{0}: {1}" -f $name, (Test-Path $file))
 }
