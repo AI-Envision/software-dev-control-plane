@@ -10,6 +10,7 @@ Install small, stable guidance **once** so every *new local Codex session on thi
 - Installed global instructions: `$CODEX_HOME/AGENTS.md` when CODEX_HOME is set; otherwise `~/.codex/AGENTS.md`.
 - Installed user-level skills: `~/.agents/skills/<skill-name>/SKILL.md`.
 - Repo-specific instructions stay in each repository's own `AGENTS.md`.
+- Commercial product, pricing, market and continue/pivot/stop questions can invoke `venture-validation` as a research procedure. It does not run paid models, forecast actual revenue, create a persistent task or override product priorities.
 - A Codex Goal belongs to a single thread. The rules here do **not** start a Goal automatically or authorize continuous autonomous background execution.
 
 ## Windows PowerShell (native Codex Desktop)
@@ -69,7 +70,7 @@ Use `--update-skills` only after reviewing existing skill changes. Do not share 
 ## Verify in a fresh Codex session
 
 1. Confirm the real active Windows/WSL Codex environment and repository/worktree.
-2. Inspect the installed global AGENTS.md and the three installed skill directories on disk.
+2. Inspect the installed global AGENTS.md and the installed skill directories (including `venture-validation`) on disk.
 3. Start a fresh Codex session in a small disposable repository and ask for a short summary of the applicable global/project instructions and the names of relevant available skills.
 4. Give a bounded coding task and verify that Codex preserves dirty work, uses appropriate tests, and gives a truthful completion/blocked report.
 5. For a UI task, check that visual/browser QA is attempted only if the environment and permissions allow it.
