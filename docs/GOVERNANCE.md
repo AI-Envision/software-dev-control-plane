@@ -49,3 +49,29 @@ The implementation must stop when:
 - two focused correction attempts fail in the same area
 - deterministic validation cannot be constructed
 - evidence does not support the requested completion claim
+
+## Provider-agnostic orchestration and cost governance (adopted 2026-11-26)
+
+For meaningful AI-assisted tasks, inspect current instructions, available skills,
+provider capabilities, data permissions and approved budget. Select the least
+costly option meeting acceptance criteria; record the routing rationale or why
+no delegation is needed. Prefer capability-based adapters and compliant fallback
+rather than vendor lock-in. Preserve human review boundaries and existing skills.
+
+- Default paid API budget is zero; explicit authorization is required for any
+  nonzero spend. Fail closed on uncertain cost or data authorization.
+- Bound retries, recursion, delegation depth and elapsed time. Never bypass
+  provider limits or terms.
+- Protect credentials and confidential data; review and pin external skills and
+  tools. Store generated media as files and pass paths when practical.
+- Measure cost per verified outcome, including retries and review. Separate
+  measured API charges, subscription consumption, local costs and estimates.
+- Verify results independently where warranted; report unverified claims as such.
+- Before rollout, integrate these rules into the actual global instruction and
+  installer mechanism; test offline routing, fallback, budget/privacy rejection,
+  secret handling, bounded execution, regression and fresh-session discovery.
+- Check policy version and availability at project handoff; record drift and
+  missing capabilities. Policy documentation alone is not runtime enforcement.
+
+Implementation and acceptance tracking: [issue #3](https://github.com/AI-Envision/software-dev-control-plane/issues/3).
+Status: policy adopted; implementation and machine rollout pending.
