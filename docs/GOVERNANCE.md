@@ -75,3 +75,10 @@ rather than vendor lock-in. Preserve human review boundaries and existing skills
 
 Implementation and acceptance tracking: [issue #3](https://github.com/AI-Envision/software-dev-control-plane/issues/3).
 Status: policy adopted; implementation and machine rollout pending.
+
+## Optional media production capability
+
+For authorized tasks involving media reconstruction or cinematic storytelling, consult
+[Agentic Media Production](AGENTIC_MEDIA_PRODUCTION.md) for source provenance,
+rights, reconstruction disclosure, local processing and quality gates. This is a
+research capability, not a requirement to install media tools for unrelated tasks.
